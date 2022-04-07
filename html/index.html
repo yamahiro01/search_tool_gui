@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h2>eelテスト</h2>
+        <!-- 1.検索ワード入力と検索ボタンの作成 -->
+        <div class="">
+            CSVファイル名<input id="csv_name" type="text"><br>
+            検索ワード<input id="search_word" type="text">
+            <button id="search">検索</button><br>
+        </div>
+        <!-- 3.検索結果の表示とログ表示領域の作成 -->
+        <div>
+            <textarea id="result" class="log-view-area"></textarea>
+        </div>
+        <script type="text/javascript" src="./eel.js"></script>
+        <script>
+            search.addEventListener('click', () => {
+                // 2.検索ワード入力が空だったらアラートを表示
+                if (!search_word.value) window.alert("検索文字を入力してください。")
+                if (!csv_name.value) window.alert("保存先を入力して下さい。")
+
+                eel.cat_search(search_word.value, csv_name.value)
+            })
+
+            eel.expose(view_log_js)
+            function view_log_js(text){
+                // 4.作成したログ表示領域にcat_searchの結果を表示
+                result.value += text + "\n"
+            }
+        </script>
+    </body>
+</html>
